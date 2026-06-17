@@ -1,0 +1,46 @@
+{
+  "enterpriseApplications": [
+    {
+      "displayName": "Northwind Employee Portal",
+      "identifierUri": "api://northwind-portal",
+      "protocol": "OIDC",
+      "ssoMode": "oidc",
+      "scimProvisioning": true,
+      "claimsMappingRef": "oidc-portal.spec.json",
+      "appRoles": [
+        { "displayName": "Portal.User", "value": "Portal.User", "allowedMemberTypes": ["User"] },
+        { "displayName": "Portal.Admin", "value": "Portal.Admin", "allowedMemberTypes": ["User"] }
+      ],
+      "assignedGroups": [
+        { "group": "SG-APP-NorthwindPortal", "appRole": "Portal.User" },
+        { "group": "SG-ROLE-IT-Administrator", "appRole": "Portal.Admin" }
+      ]
+    },
+    {
+      "displayName": "Microsoft 365",
+      "protocol": "FirstParty",
+      "notes": "First-party app — assign via SG-APP-Microsoft365 and group-based licensing",
+      "assignedGroups": [
+        { "group": "SG-APP-Microsoft365", "appRole": "Default Access" },
+        { "group": "SG-LIC-M365-E3", "licenseAssignment": true }
+      ]
+    }
+  ],
+  "entraDirectoryRoles": [
+    {
+      "role": "Global Administrator",
+      "assignedTo": ["adm-breakglass@northwindcollab.onmicrosoft.com"],
+      "notes": "Break-glass only — not assigned to daily operators"
+    },
+    {
+      "role": "User Administrator",
+      "assignedGroup": "SG-ROLE-HR-Administrator",
+      "notes": "HR can manage user profiles for their workflows"
+    },
+    {
+      "role": "Privileged Role Administrator",
+      "assignedGroup": "SG-ROLE-IT-Administrator",
+      "notes": "IT admins manage role assignments without standing Global Admin"
+    }
+  ]
+}

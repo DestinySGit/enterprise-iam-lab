@@ -1,0 +1,45 @@
+{
+  "displayName": "Northwind Employee Portal",
+  "protocol": "OIDC",
+  "ssoMode": "oidc",
+  "identifierUri": "api://northwind-portal",
+  "redirectUris": [
+    "http://localhost:3000/auth/callback",
+    "https://portal.northwind-lab.local/auth/callback"
+  ],
+  "platform": "spa",
+  "implicitGrant": {
+    "enableIdTokenIssuance": true,
+    "enableAccessTokenIssuance": true
+  },
+  "scopes": [
+    "openid",
+    "profile",
+    "email",
+    "api://northwind-portal/access"
+  ],
+  "exposedApi": {
+    "scopeValue": "access",
+    "adminConsentDisplayName": "Access Northwind Portal API",
+    "adminConsentDescription": "Allows the app to access the Northwind Employee Portal API on behalf of the signed-in user",
+    "userConsentDisplayName": "Portal access",
+    "userConsentDescription": "Access the Northwind Employee Portal on your behalf"
+  },
+  "appRoles": [
+    { "displayName": "Portal.User", "value": "Portal.User", "allowedMemberTypes": ["User"] },
+    { "displayName": "Portal.Admin", "value": "Portal.Admin", "allowedMemberTypes": ["User"] }
+  ],
+  "groupClaims": {
+    "enabled": true,
+    "include": "SecurityGroup"
+  },
+  "optionalClaims": ["groups", "email", "preferred_username"],
+  "grantType": "authorization_code",
+  "scimProvisioning": true,
+  "assignedGroups": [
+    { "group": "SG-APP-NorthwindPortal", "appRole": "Portal.User" },
+    { "group": "SG-ROLE-IT-Administrator", "appRole": "Portal.Admin" }
+  ],
+  "notes": "Authorization code flow with PKCE for SPA. Run Configure-LabOidcApps.ps1 after Configure-LabApps.ps1 to apply redirect URIs, optional claims, and exposed API scope.",
+  "entraFreeNotes": "Group-to-role assignments require P1+ in portal; Configure-LabApps.ps1 assigns roles via Graph on Free tier. Admin consent for api://northwind-portal/access can be granted in Enterprise applications > Permissions."
+}

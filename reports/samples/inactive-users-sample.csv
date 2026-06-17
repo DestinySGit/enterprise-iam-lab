@@ -1,0 +1,4 @@
+DisplayName,UserPrincipalName,Department,AccountEnabled,LastSignIn,InactiveDays,DataSource,RecommendedAction
+Sample User One,sample.user1@northwindcollab.onmicrosoft.com,Engineering,True,,Never,SignInActivity,Review for disable
+Sample User Two,sample.user2@northwindcollab.onmicrosoft.com,Finance,True,2025-01-15T10:30:00Z,152,SignInActivity,Review for disable
+Sample User Three,sample.user3@northwindcollab.onmicrosoft.com,Operations,False,2024-06-01T08:00:00Z,380,SignInActivity,Already disabled

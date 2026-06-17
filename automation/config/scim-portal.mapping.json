@@ -1,0 +1,19 @@
+{
+  "targetApp": "Northwind Employee Portal",
+  "scimEndpoint": "https://portal.northwind-lab.local/scim/v2",
+  "notes": "Replace endpoint with live Portal SCIM URL or document Entra provisioning simulation",
+  "syncGroups": true,
+  "syncRoles": true,
+  "provisioningActions": {
+    "joiner": "Create user + assign Portal.User role via group membership",
+    "leaver": "Disable user (active=false) + remove group memberships"
+  },
+  "attributeMappings": [
+    { "entraAttribute": "givenName", "scimAttribute": "name.givenName", "required": true },
+    { "entraAttribute": "surname", "scimAttribute": "name.familyName", "required": true },
+    { "entraAttribute": "mail", "scimAttribute": "emails[type eq \"work\"].value", "required": true },
+    { "entraAttribute": "department", "scimAttribute": "urn:ietf:params:scim:schemas:extension:enterprise:2.0:User:department", "required": true },
+    { "entraAttribute": "jobTitle", "scimAttribute": "title", "required": true },
+    { "entraAttribute": "manager", "scimAttribute": "manager.displayName", "required": false }
+  ]
+}

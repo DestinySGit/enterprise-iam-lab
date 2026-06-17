@@ -1,0 +1,29 @@
+{
+  "displayName": "Salesforce CRM",
+  "galleryApp": true,
+  "gallerySearchName": "Salesforce",
+  "protocol": "SAML",
+  "ssoMode": "saml",
+  "entityId": "https://northwind-lab.salesforce.com",
+  "acsUrl": "https://northwind-lab.my.salesforce.com",
+  "signOnUrl": "https://northwind-lab.my.salesforce.com",
+  "notes": "Gallery Salesforce CRM enterprise app (add from Entra app gallery as Salesforce). Replace ACS URL with your Salesforce org SSO URL when using a Developer Edition org.",
+  "groupClaims": [
+    {
+      "source": "SecurityGroup",
+      "scope": "Security groups",
+      "filter": "SG-APP-Salesforce",
+      "filterAttribute": "displayName",
+      "claimName": "groups"
+    }
+  ],
+  "attributeMappings": [
+    { "entraClaim": "user.userprincipalname", "samlAttribute": "NameID", "format": "emailAddress" },
+    { "entraClaim": "user.mail", "samlAttribute": "emailaddress" },
+    { "entraClaim": "user.displayname", "samlAttribute": "displayName" },
+    { "entraClaim": "user.department", "samlAttribute": "department" }
+  ],
+  "entitlementGroup": "SG-APP-Salesforce",
+  "entitlementDepartments": ["Finance", "Operations"],
+  "entraFreeNotes": "Entra ID Free cannot assign groups to enterprise apps in the portal. Use Security groups group claim filtered to SG-APP-Salesforce and assign pilot users individually for SSO testing."
+}

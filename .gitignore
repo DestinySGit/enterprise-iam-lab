@@ -1,0 +1,31 @@
+# Secrets and credentials
+.env
+!.env.example
+automation.env
+automation/automation.env
+*.pfx
+*.pem
+secrets/
+automation/secrets/
+
+# Internal build workflow (exclude step-by-step build recipe and PRD)
+vibe_coding-main/
+docs/enterprise-iam-lab/
+
+# Local screenshot generation temp files
+.screenshot-temp/
+
+# Local script output (keep samples for portfolio)
+reports/*
+!reports/samples/
+!reports/samples/**
+*.log
+
+# OS and editor
+.DS_Store
+Thumbs.db
+.vscode/
+*.swp
+
+# PowerShell
+*.ps1xml

@@ -1,0 +1,89 @@
+{
+  "rolloutStrategy": "Create all policies in report-only mode first. Enable CA-001, then CA-003, then CA-002 after MFA registration is confirmed for test users.",
+  "excludeGroup": "SG-EXCLUDE-BreakGlass",
+  "policies": [
+    {
+      "name": "CA-001-Block-Legacy-Auth",
+      "state": "enabledForReportingButNotEnforced",
+      "description": "Block legacy authentication protocols (POP, IMAP, SMTP AUTH, older clients).",
+      "conditions": {
+        "clientAppTypes": ["exchangeActiveSync", "other"],
+        "includeUsers": "All",
+        "excludeGroups": ["SG-EXCLUDE-BreakGlass"],
+        "includeApplications": "All"
+      },
+      "grantControls": {
+        "operator": "OR",
+        "builtInControls": ["block"]
+      },
+      "enableAfterValidation": true,
+      "rationale": "Legacy auth bypasses Conditional Access. Blocking is baseline Zero Trust hygiene."
+    },
+    {
+      "name": "CA-002-Require-MFA-All-Users",
+      "state": "enabledForReportingButNotEnforced",
+      "description": "Require MFA for all users accessing cloud apps.",
+      "conditions": {
+        "includeUsers": "All",
+        "excludeGroups": ["SG-EXCLUDE-BreakGlass"],
+        "includeApplications": "All",
+        "clientAppTypes": ["browser", "mobileAppsAndDesktopClients"]
+      },
+      "grantControls": {
+        "operator": "OR",
+        "builtInControls": ["mfa"]
+      },
+      "enableAfterValidation": true,
+      "rationale": "Phishing-resistant authentication baseline for all workforce identities."
+    },
+    {
+      "name": "CA-003-Require-MFA-Admins",
+      "state": "enabledForReportingButNotEnforced",
+      "description": "Require MFA for all directory roles with strict session sign-in frequency.",
+      "conditions": {
+        "includeRoles": ["all_admin_roles"],
+        "excludeGroups": ["SG-EXCLUDE-BreakGlass"],
+        "includeApplications": "All"
+      },
+      "grantControls": {
+        "operator": "OR",
+        "builtInControls": ["mfa"]
+      },
+      "sessionControls": {
+        "signInFrequency": {
+          "value": 4,
+          "type": "hours",
+          "isEnabled": true
+        }
+      },
+      "enableAfterValidation": true,
+      "rationale": "Privileged identities require stronger session controls than standard users."
+    },
+    {
+      "name": "CA-004-Block-Unknown-Locations-Admins",
+      "state": "enabledForReportingButNotEnforced",
+      "description": "Block admin sign-ins from locations outside trusted lab countries.",
+      "conditions": {
+        "includeRoles": ["all_admin_roles"],
+        "excludeGroups": ["SG-EXCLUDE-BreakGlass"],
+        "locations": {
+          "includeLocations": ["All"],
+          "excludeLocations": ["AllTrusted"]
+        }
+      },
+      "grantControls": {
+        "operator": "OR",
+        "builtInControls": ["block"]
+      },
+      "enableAfterValidation": false,
+      "rationale": "Optional lab policy demonstrating location-based admin protection. Configure trusted named locations first."
+    }
+  ],
+  "portalSteps": [
+    "Entra ID > Protection > Conditional Access > New policy",
+    "Use naming convention CA-NNN-Purpose",
+    "Assign SG-EXCLUDE-BreakGlass to exclusions for every policy",
+    "Start in Report-only; review Sign-in logs for 48 hours",
+    "Enable incrementally per rolloutStrategy above"
+  ]
+}

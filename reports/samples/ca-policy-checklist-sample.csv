@@ -1,0 +1,5 @@
+PolicyName,InitialState,Description,ExcludeGroups,GrantControls,SessionControls,EnableAfterValidation,Rationale,PortalConfigured,Notes
+CA-001-Block-Legacy-Auth,enabledForReportingButNotEnforced,Block legacy authentication protocols (POP IMAP SMTP AUTH older clients).,SG-EXCLUDE-BreakGlass,block,,True,Legacy auth bypasses Conditional Access. Blocking is baseline Zero Trust hygiene.,,
+CA-002-Require-MFA-All-Users,enabledForReportingButNotEnforced,Require MFA for all users accessing cloud apps.,SG-EXCLUDE-BreakGlass,mfa,,True,Phishing-resistant authentication baseline for all workforce identities.,,
+CA-003-Require-MFA-Admins,enabledForReportingButNotEnforced,Require MFA for all directory roles with strict session sign-in frequency.,SG-EXCLUDE-BreakGlass,mfa,4 hours,True,Privileged identities require stronger session controls than standard users.,,
+CA-004-Block-Unknown-Locations-Admins,enabledForReportingButNotEnforced,Block admin sign-ins from locations outside trusted lab countries.,SG-EXCLUDE-BreakGlass,block,,False,Optional lab policy demonstrating location-based admin protection. Configure trusted named locations first.,,

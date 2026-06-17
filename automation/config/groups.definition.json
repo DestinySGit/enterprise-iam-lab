@@ -1,0 +1,149 @@
+{
+  "organization": "Northwind Collaborative",
+  "namingConvention": {
+    "department": "SG-DEPT-{Department}",
+    "role": "SG-ROLE-{RoleTier}",
+    "application": "SG-APP-{AppName}",
+    "license": "SG-LIC-{Sku}"
+  },
+  "groups": [
+    {
+      "displayName": "SG-DEPT-HR",
+      "description": "Human Resources department members",
+      "groupType": "Department",
+      "mailEnabled": false,
+      "securityEnabled": true
+    },
+    {
+      "displayName": "SG-DEPT-Finance",
+      "description": "Finance department members",
+      "groupType": "Department",
+      "mailEnabled": false,
+      "securityEnabled": true
+    },
+    {
+      "displayName": "SG-DEPT-IT",
+      "description": "Information Technology department members",
+      "groupType": "Department",
+      "mailEnabled": false,
+      "securityEnabled": true
+    },
+    {
+      "displayName": "SG-DEPT-Engineering",
+      "description": "Engineering department members",
+      "groupType": "Department",
+      "mailEnabled": false,
+      "securityEnabled": true
+    },
+    {
+      "displayName": "SG-DEPT-Operations",
+      "description": "Operations department members",
+      "groupType": "Department",
+      "mailEnabled": false,
+      "securityEnabled": true
+    },
+    {
+      "displayName": "SG-ROLE-Employee",
+      "description": "All standard employees",
+      "groupType": "Role",
+      "mailEnabled": false,
+      "securityEnabled": true
+    },
+    {
+      "displayName": "SG-ROLE-Manager",
+      "description": "People managers with direct reports",
+      "groupType": "Role",
+      "mailEnabled": false,
+      "securityEnabled": true
+    },
+    {
+      "displayName": "SG-ROLE-IT-Administrator",
+      "description": "IT administrators — elevated operational access",
+      "groupType": "Role",
+      "mailEnabled": false,
+      "securityEnabled": true,
+      "isAssignableToRole": true
+    },
+    {
+      "displayName": "SG-ROLE-HR-Administrator",
+      "description": "HR administrators — workforce data access",
+      "groupType": "Role",
+      "mailEnabled": false,
+      "securityEnabled": true,
+      "isAssignableToRole": true
+    },
+    {
+      "displayName": "SG-APP-Microsoft365",
+      "description": "Microsoft 365 application access",
+      "groupType": "Application",
+      "mailEnabled": false,
+      "securityEnabled": true
+    },
+    {
+      "displayName": "SG-APP-NorthwindPortal",
+      "description": "Internal Northwind employee portal",
+      "groupType": "Application",
+      "mailEnabled": false,
+      "securityEnabled": true
+    },
+    {
+      "displayName": "SG-APP-Salesforce",
+      "description": "Salesforce access (Finance, Operations)",
+      "groupType": "Application",
+      "mailEnabled": false,
+      "securityEnabled": true
+    },
+    {
+      "displayName": "SG-LIC-M365-E3",
+      "description": "Group-based licensing — Microsoft 365 E3",
+      "groupType": "License",
+      "mailEnabled": false,
+      "securityEnabled": true,
+      "licenseSku": "SPE_E3"
+    },
+    {
+      "displayName": "SG-EXCLUDE-BreakGlass",
+      "description": "Break-glass accounts excluded from CA policies",
+      "groupType": "Role",
+      "mailEnabled": false,
+      "securityEnabled": true
+    },
+    {
+      "displayName": "SG-EXCLUDE-CA-ReportOnly",
+      "description": "Pilot users for CA report-only testing",
+      "groupType": "Role",
+      "mailEnabled": false,
+      "securityEnabled": true
+    }
+  ],
+  "membershipRules": {
+    "departmentGroup": "SG-DEPT-{department}",
+    "roleGroup": "SG-ROLE-{roleTier}",
+    "defaultAppGroups": ["SG-APP-Microsoft365", "SG-APP-NorthwindPortal"],
+    "salesforceDepartments": ["Finance", "Operations"],
+    "licenseGroup": "SG-LIC-M365-E3"
+  },
+  "accessReviewScope": {
+    "campaignName": "Q1-2026-App-Access-Review",
+    "durationDays": 14,
+    "autoApply": false,
+    "groups": [
+      {
+        "displayName": "SG-APP-Salesforce",
+        "ownerUpn": "william.irving@northwindcollab.onmicrosoft.com"
+      },
+      {
+        "displayName": "SG-APP-NorthwindPortal",
+        "ownerUpn": "kevin.donna@northwindcollab.onmicrosoft.com"
+      },
+      {
+        "displayName": "SG-ROLE-IT-Administrator",
+        "ownerUpn": "kevin.donna@northwindcollab.onmicrosoft.com"
+      },
+      {
+        "displayName": "SG-ROLE-HR-Administrator",
+        "ownerUpn": "maria.bennett@northwindcollab.onmicrosoft.com"
+      }
+    ]
+  }
+}

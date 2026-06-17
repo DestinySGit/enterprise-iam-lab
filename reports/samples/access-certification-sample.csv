@@ -1,0 +1,5 @@
+UserPrincipalName,Resource,Decision,Reviewer,ReviewDate,Justification
+james.anderson@northwindcollab.onmicrosoft.com,SG-APP-NorthwindPortal,Approve,Patricia Morris,2026-03-15,Active employee — portal required
+maria.bennett@northwindcollab.onmicrosoft.com,SG-APP-Salesforce,Approve,Kenneth Sanders,2026-03-15,Finance role requires CRM
+robert.campbell@northwindcollab.onmicrosoft.com,SG-ROLE-IT-Administrator,Approve,Lisa Diaz,2026-03-16,Current IT admin — justified
+sample.former@northwindcollab.onmicrosoft.com,SG-APP-Salesforce,Deny,Kenneth Sanders,2026-03-17,User transferred — remove access
